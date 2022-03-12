@@ -1,0 +1,44 @@
+<app-player 
+*ngFor="let player of game.players, 
+let i = index;" 
+class="playerPosition"
+    [ngStyle]="{'top.px': 50 + (i * 150)}" 
+    [name]='player' 
+    [playerActive]="i == game.currentPlayer">
+</app-player>
+
+<div class="field">
+
+    <img src="/assets/img/table.svg" class="table">
+    <div class="cardStack">
+        <!-- Coverd Card Stack -->
+        <img [ngStyle]="{'transform': 'rotate(' + i* 6.923077 +'deg)' }" *ngFor="let c of game.stack; let i = index;"
+            src="/assets/img/cards/card_cover.png" alt="">
+
+        <!-- <img class="topCard" (click)="takeCard()" src="/assets/img/cards/card_cover.png" style="right: 25px">  -->
+
+
+        <!-- <img [ngStyle]="{'right.px': i *5}" *ngFor="let c of [0,1,2,3]; let i = index;"
+            src="/assets/img/cards/card_cover.png" alt="">
+
+        <img class="topCard" (click)="takeCard()" src="/assets/img/cards/card_cover.png" style="right: 25px"> -->
+
+        <!-- Stack for played Card -->
+        <img *ngFor="let card of game.playedCards" src="/assets/img/cards/{{ card }}.png" class="playedCard">
+
+        <!-- Current Card Animation -->
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pickCard"
+            src="/assets/img/cards/{{ currentCard }}.png" style="right: 25px">
+    </div>
+
+
+
+    <div class="bgLayer"></div>
+
+</div>
+
+<app-game-info [card]="currentCard"></app-game-info>
+
+<button mat-fab color="primary" class="btnAdd" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+</button>
