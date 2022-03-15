@@ -1,6 +1,4 @@
-<mat-card class ="instructionCard">
-    <mat-card-title>{{ card ? title : 'Please pick a card' }}</mat-card-title>
-    <mat-card-content>{{ card ? description : 'Please click on the card stack to draw a card'  }}</mat-card-content>
-
-
+<mat-card class ="instructionCard" [ngClass]="{'ngclassinstrcard' : false}" >
+    <mat-card-title>{{ card ? title : 'Add Player' }}</mat-card-title>
+    <mat-card-content>{{ card ? description : 'Please add at least two players'  }}</mat-card-content>
     </mat-card>

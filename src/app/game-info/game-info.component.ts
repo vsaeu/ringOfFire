@@ -1,4 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Game } from 'src/models/game';
+
 
 @Component({
   selector: 'app-game-info',
@@ -6,6 +8,10 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
   styleUrls: ['./game-info.component.scss']
 })
 export class GameInfoComponent implements OnInit, OnChanges {
+
+
+
+
   cardAction = [
     { title: 'Waterfall', description: 'Everyone has to start drinking at the same time. As soon as player 1 stops drinking, player 2 may stop drinking. Player 3 may stop as soon as player 2 stops drinking, and so on.' },
     { title: 'You', description: 'You decide who drinks' },
@@ -37,5 +43,8 @@ export class GameInfoComponent implements OnInit, OnChanges {
       this.title = this.cardAction[cardNumber - 1].title;
       this.description = this.cardAction[cardNumber - 1].description;
     }
+
   }
+
+
 }
