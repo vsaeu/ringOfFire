@@ -1,13 +1,11 @@
-<app-player *ngFor="let player of game.players, 
-let i = index;" class="playerPosition" [ngStyle]="{'top.px': 50 + (i * 150)}" [name]='player'
-    [playerActive]="i == game.currentPlayer">
-</app-player>
+
 
 <div class="field">
 
     <div class="onTable">
         <img src="/assets/img/table.svg" class="table">
         <div class="cardStack">
+            
             <!-- Coverd Card Stack -->
             <img [ngStyle]="{'transform': 'rotate(' + i* 6.923077 +'deg)' }"
                 *ngFor="let c of game.stack; let i = index;" src="/assets/img/cards/card_cover.png" id="{{i}}"
@@ -18,7 +16,7 @@ let i = index;" class="playerPosition" [ngStyle]="{'top.px': 50 + (i * 150)}" [n
                 [ngStyle]="{'transform': 'scale(1.5) translateX(-' + game.shuffleX[i] + 'rem) translateY(' + game.shuffleY[i] + 'rem) rotate(-' + game.shuffleDeg[i] + 'deg)'}">
 
             <!-- Current Card Animation -->
-            <img *ngIf="pickCardAnimation" class="pickCard" src="/assets/img/cards/{{ currentCard }}.png">
+            <img *ngIf="game.pickCardAnimation" class="pickCard" src="/assets/img/cards/{{ game.currentCard }}.png">
         </div>
     </div>
 
@@ -26,8 +24,19 @@ let i = index;" class="playerPosition" [ngStyle]="{'top.px': 50 + (i * 150)}" [n
 
 </div>
 
-<app-game-info [card]="currentCard"></app-game-info>
+<!--  ------------  Spielanweisungen------------ -->
+<app-game-info [card]="game.currentCard"></app-game-info>
 
-<button mat-fab color="primary" class="btnAdd" [class.btnBeginning] = "this.game.amountOfPlayers < 2" (click)="openDialog()">
+
+<!-- ---------Button ----------------- -->
+<button mat-fab color="primary" class="btnAdd" [class.btnBeginning] = "" (click)="openDialog()">
     <mat-icon>add</mat-icon>
 </button>
+
+<!-- this.game.amountOfPlayers < 2      Classen Bedingung -->
+
+<!-- ---------Players ----------------- -->
+<app-player *ngFor="let player of game.players, 
+let i = index;" class="playerPosition" [ngStyle]="{'top.rem': 3 + (i * 3.5)}" [name]='player'
+    [playerActive]="i == game.currentPlayer">
+</app-player>

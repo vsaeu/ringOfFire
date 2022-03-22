@@ -6,11 +6,11 @@ export class Game {
     public shuffleX: number[] = [];
     public shuffleY: number[] = [];
     public shuffleDeg: number[] = [];
-    public amountOfPlayers: number = 0;
+    // public amountOfPlayers: number = 0;
     public highlightInstruction:boolean = false;
-
-
-
+    public pickCardAnimation = false;
+    public currentCard: string = '';
+    public amountOfPlayers: number= 0;
 
     constructor() {
         for (let i = 1; i < 14; i++) {
@@ -25,18 +25,33 @@ export class Game {
             this.shuffleX.push(shuffleXfct())
             this.shuffleY.push(shuffleYfct())
             this.shuffleDeg.push(shuffleDegfct())
-            console.log(this.shuffleX[i]);
         }
     }
+
+//Umwandlung des Spiels in ein Json, hier kommen alle Variablen rein
+    public toJson(){
+        return {
+            players: this.players,
+            stack: this.stack,
+            playedCards: this.playedCards,
+            currentPlayer: this.currentPlayer,
+            pickCardAnimation: this.pickCardAnimation,
+            currentCard: this.currentCard,
+            shuffleX: this.shuffleX,
+            shuffleY: this.shuffleY,
+            shuffleDeg: this.shuffleDeg
+        }
+    }
+
 }
 
 function shuffleXfct() {
-    let x = Math.random() * 1.5 + 13;
+    let x = Math.random() * 1.5 + 16;
     return x;
 }
 
 function shuffleYfct() {
-    let y = Math.random() * 1.5 + 5;
+    let y = Math.random() * 1.5 + -5;
     return y;
 }
 
@@ -44,7 +59,6 @@ function shuffleDegfct() {
     let rot = (Math.random() * 10 + 10) - 10;
     return rot;
 }
-
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -67,4 +81,3 @@ function shuffle(array) {
 // Used like so
 var arr = [2, 11, 37, 42];
 shuffle(arr);
-console.log(arr);

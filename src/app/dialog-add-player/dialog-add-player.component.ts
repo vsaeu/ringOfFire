@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  MatDialogRef } from '@angular/material/dialog';
 import { Game } from 'src/models/game';
 
 @Component({
@@ -8,20 +9,29 @@ import { Game } from 'src/models/game';
 })
 export class DialogAddPlayerComponent implements OnInit {
   game: Game;
-name: string='';
+  amountOfPlayers: number = 0;
+  name: string = '';
 
-  constructor() { }
+
+  constructor( public dialogRef: MatDialogRef<DialogAddPlayerComponent> ) { }
+
 
   ngOnInit(): void {
   }
 
-  onNoClick(){
-    console.log();
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 
-  playerCounter(){
-    this.game.amountOfPlayers++;
-      }
+  playerCounter() {
+    console.log('triggered');
+    
+    console.log('Player Added: ', this.amountOfPlayers );
+    this.amountOfPlayers++;
+    console.log('Player Added: ', this.amountOfPlayers );
+    
+  }
 
 }

@@ -3,10 +3,12 @@
   <p>Please enter the name of the player</p>
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="name">
+    <input matInput [(ngModel)]="name"> 
+     <!-- Bindung der Variable an Input Feld: Was sich im Input ändert, ändert sich auch in der Variable und umgekehrt -->
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="playerCounter()" [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">Don't drink</button>
+  <button mat-button (click)="playerCounter()" [disabled]="name.length == 0" [mat-dialog-close]="name" >Ok</button>
+  <!-- <button mat-button (click)="playerCounter()" [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button> -->
 </div>
