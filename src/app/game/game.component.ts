@@ -77,6 +77,7 @@ export class GameComponent implements OnInit {
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+      // this.game.currentPlayer = 0;
       this.safeGame();  //Hier speichern wir unser Spiel, dieser schickt Änderungen in der Subscribe Funktion zurück
 
       setTimeout(() => {
