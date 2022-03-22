@@ -39,4 +39,5 @@
 <app-player *ngFor="let player of game.players, 
 let i = index;" class="playerPosition" [ngStyle]="{'top.rem': 3 + (i * 3.5)}" [name]='player'
     [playerActive]="i == game.currentPlayer">
+    
 </app-player>
