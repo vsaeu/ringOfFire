@@ -10,10 +10,11 @@ export class Game {
     public shuffleYMobile: number[] = [];
     public shuffleDegMobile: number[] = [];
     // public amountOfPlayers: number = 0;
-    public highlightInstruction:boolean = false;
+    public highlightInstruction: boolean = false;
     public pickCardAnimation = false;
     public currentCard: string = '';
-    public amountOfPlayers: number= 0;
+    public amountOfPlayers: number = 0;
+    public exStack = [];
 
     constructor() {
         for (let i = 1; i < 14; i++) {
@@ -24,6 +25,17 @@ export class Game {
         }
         shuffle(this.stack);
 
+
+        console.log(this.stack);
+        
+        // StepDnone One
+        this.extendStackByDisplay();
+        console.log(this.exStack);
+        console.log(this.exStack[0]);
+        console.log(this.exStack[0]['id']);
+
+
+
         for (let i = 0; i < 52; i++) {
             this.shuffleX.push(shuffleXfct())
             this.shuffleY.push(shuffleYfct())
@@ -33,10 +45,11 @@ export class Game {
             this.shuffleYMobile.push(shuffleYfctMob())
             this.shuffleDegMobile.push(shuffleDegfctMob())
         }
+
     }
 
-//Umwandlung des Spiels in ein Json, hier kommen alle Variablen rein
-    public toJson(){
+    //Umwandlung des Spiels in ein Json, hier kommen alle Variablen rein
+    public toJson() {
         return {
             players: this.players,
             stack: this.stack,
@@ -49,11 +62,22 @@ export class Game {
             shuffleDeg: this.shuffleDeg,
             shuffleXMobile: this.shuffleXMobile,
             shuffleYMobile: this.shuffleYMobile,
-            shuffleDegMobile: this.shuffleDegMobile
+            shuffleDegMobile: this.shuffleDegMobile,
+            exStack: this.exStack
         }
     }
 
+    public extendStackByDisplay() {
+        for (var i = 0; i < 52; i++) {
+            this.exStack.push({
+                id: this.stack[i],
+                optionValue: false
+            });
+        }
+    }
 }
+
+
 
 function shuffleXfct() {
     let x = Math.random() * 1.3 + 13;

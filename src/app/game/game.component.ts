@@ -49,9 +49,10 @@ export class GameComponent implements OnInit {
           this.game.shuffleX = game.shuffleX;
           this.game.shuffleY = game.shuffleY;
           this.game.shuffleDeg = game.shuffleDeg;
-
-
-
+          this.game.shuffleXMobile = game.shuffleXMobile;
+          this.game.shuffleYMobile = game.shuffleYMobile;
+          this.game.shuffleDegMobile = game.shuffleDegMobile;
+          this.game.exStack = game.exStack;
         }); //Änderungen abonnieren
     });
     this
@@ -59,7 +60,7 @@ export class GameComponent implements OnInit {
       .collection('games') //zugriff auf Database Sammlung
       .valueChanges() // Sobald es eine Änderung gibt
       .subscribe((game) => {  //subscribe wird mehrmals ausgeführt
-        console.log('Game update', game);
+        // console.log('Game update', game);
       }); //Änderungen abonnieren
   }
 
@@ -70,11 +71,11 @@ export class GameComponent implements OnInit {
 
   //Die Karten werden ins Game Objekt geschoben und anschließend muss man diese wieder raus holen
 
-  takeCard(id) {
+  takeCard(i) {
     // if (!this.game.pickCardAnimation) {
     if (!this.game.pickCardAnimation && this.game.players.length > 1) {
-      document.getElementById(`${id}`).classList.add('dNone');
-      this.game.currentCard = this.game.stack[id];
+      document.getElementById(`${i}`).classList.add('dNone');
+      this.game.currentCard = this.game.exStack[`${i}`]['id'];
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
