@@ -1,39 +1,36 @@
-.player{
-
+.player {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-image: linear-gradient(to right,  rgb(66, 66, 66,.7), rgb(138, 42, 42,.7), rgb(66, 66, 66,.7));
+    background-image: linear-gradient(to right, rgb(66, 66, 66, 0.7), rgb(138, 42, 42, 0.7), rgb(66, 66, 66, 0.7));
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     width: 12rem;
     transition: ease-in-out 225ms;
 
-    span{
+    span {
         font-size: 1.5rem;
         color: white;
     }
 
-    div{
+    div {
         width: 100%;
         display: flex;
         justify-content: center;
     }
 
-    img{
-        width: 50px;
-        height: 50px;
+    img {
+        width: 2rem;
+        height: 2rem;
         object-fit: cover;
-padding-left: .5rem;
+        padding-left: 0.2rem;
     }
 }
 
-
-.player-active{
+.player-active {
     background-color: rgb(138, 42, 42) !important;
-    background-image: linear-gradient(to right,   rgb(138, 42, 42), rgb(138, 42, 42), rgb(66, 66, 66));
-
+    background-image: linear-gradient(to right, rgb(138, 42, 42), rgb(138, 42, 42), rgb(66, 66, 66));
     filter: brightness(1.3);
-    width: 15rem;  
+    width: 15rem;
     transition: ease-in-out 225ms;
 }

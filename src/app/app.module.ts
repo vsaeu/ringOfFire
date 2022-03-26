@@ -16,7 +16,10 @@ import { GameInfoComponent } from './game-info/game-info.component';
 import {MatCardModule} from '@angular/material/card';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
-import { MatInputModule  } from '@angular/material/input'
+import { MatInputModule  } from '@angular/material/input';
+import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
+import { PleaseAddPlayerDialogComponent } from './please-add-player-dialog/please-add-player-dialog.component';
+
 
 
 @NgModule({
@@ -27,6 +30,8 @@ import { MatInputModule  } from '@angular/material/input'
     PlayerComponent,
     DialogAddPlayerComponent,
     GameInfoComponent,
+    PlayerMobileComponent,
+    PleaseAddPlayerDialogComponent,
 
   ],
   imports: [

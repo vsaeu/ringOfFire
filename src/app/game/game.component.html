@@ -1,26 +1,35 @@
-
-
 <div class="field">
 
     <div class="onTable">
         <img src="/assets/img/table.svg" class="table">
         <div class="cardStack">
-            
+
             <!-- Coverd Card Stack -->
             <img [ngStyle]="{'transform': 'rotate(' + i* 6.923077 +'deg)' }"
                 *ngFor="let c of game.stack; let i = index;" src="/assets/img/cards/card_cover.png" id="{{i}}"
                 (click)="takeCard(i)">
 
+                <!------------DESKTOP-----------                     -->
             <!-- Stack for played Card -->
-            <img *ngFor="let card of game.playedCards; let i = index;" src="/assets/img/cards/{{ card }}.png"
+            <img class="hide-mobile" *ngFor="let card of game.playedCards; let i = index;" src="/assets/img/cards/{{ card }}.png"
                 [ngStyle]="{'transform': 'scale(1.5) translateX(-' + game.shuffleX[i] + 'rem) translateY(' + game.shuffleY[i] + 'rem) rotate(-' + game.shuffleDeg[i] + 'deg)'}">
 
             <!-- Current Card Animation -->
-            <img *ngIf="game.pickCardAnimation" class="pickCard" src="/assets/img/cards/{{ game.currentCard }}.png">
+            <img *ngIf="game.pickCardAnimation" class="pickCard hide-mobile" src="/assets/img/cards/{{ game.currentCard }}.png">
+
+
+                            <!------------MOBILE-----------                     -->
+            <!-- Stack for played Card -->
+            <img class="hide-desktop" *ngFor="let card of game.playedCards; let i = index;" src="/assets/img/cards/{{ card }}.png"
+                [ngStyle]="{'transform': 'scale(1.5) translateX(-' + game.shuffleXMobile[i] + 'rem) translateY(' + game.shuffleYMobile[i] + 'rem) rotate(-' + game.shuffleDegMobile[i] + 'deg)'}">
+
+            <!-- Current Card Animation -->
+            <img *ngIf="game.pickCardAnimation" class="pickCardMobile hide-desktop" src="/assets/img/cards/{{ game.currentCard }}.png">
+
+
+
         </div>
     </div>
-
-    <div class="bgLayer"></div>
 
 </div>
 
@@ -29,7 +38,7 @@
 
 
 <!-- ---------Button ----------------- -->
-<button mat-fab color="primary" class="btnAdd" [class.btnBeginning] = "" (click)="openDialog()">
+<button mat-fab color="primary" class="btnAdd" [class.btnBeginning]="" (click)="openDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
@@ -37,7 +46,11 @@
 
 <!-- ---------Players ----------------- -->
 <app-player *ngFor="let player of game.players, 
-let i = index;" class="playerPosition" [ngStyle]="{'top.rem': 3 + (i * 3.5)}" [name]='player'
+let i = index;" class="playerPosition hide-mobile" [ngStyle]="{'top.rem': 3 + (i * 3.5)}" [name]='player'
     [playerActive]="i == game.currentPlayer">
-    
 </app-player>
+
+<app-player-mobile *ngFor="let player of game.players, 
+let i = index;" class="playerPosition hide-desktop" [ngStyle]="{'top.rem': 9 + (i * 3.5)}" [name]='player'
+    [playerActive]="i == game.currentPlayer">
+</app-player-mobile>

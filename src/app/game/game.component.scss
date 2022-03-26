@@ -3,22 +3,14 @@
     height: 100vh;
     max-width: 100%;
     background-image: url("/assets/img/bg.jpg");
-    z-index: -2;
+    // z-index: -2;
+    background-position: center;
     background-size: cover;
-    background-position: bottom;
+    // background-position: bottom;
     display: flex;
+    position: fixed;
     // justify-content: center;
     // align-items: center;
-}
-
-.bgLayer {
-    position: absolute;
-    right: 00;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
 }
 
 .onTable {
@@ -27,26 +19,47 @@
     top: 20rem;
     // width: 30rem;
     // height: 30rem;
+    @media (max-width: 960px) {
+        left: 35%;
+        top: calc(100% - 10rem);
+    }
 }
 
 .table {
+    display: flex;
     position: absolute;
     height: 80%;
     // bottom: -18rem;
     left: -8rem;
+
     // height: 90%;
     border: solid 5px green;
+
+    // @media (max-width: 960px) {
+    //     right: -5rem;
+    //     width: min-content;
+    // }
+
+    @media (max-width: 960px) {
+        display: none;
+    }
 }
 
 .cardStack {
     position: relative;
-    transform: translateX(5rem);
     transform: rotatez(180deg) rotatex(60deg) translateY(0rem) translateX(5rem);
     border: 20px solid white;
     margin-bottom: 1.5rem;
     top: 4rem;
     left: 25rem;
     // display: none;
+
+    @media (max-width: 960px) {
+        transform: rotatez(0deg) rotatex(0deg) translateY(0rem) translateX(0rem);
+        left: 0rem;
+        bottom: 0rem;
+        top: unset;
+    }
 
     img {
         position: absolute;
@@ -58,6 +71,9 @@
         &:hover {
             filter: brightness(1.5);
         }
+        @media (max-width: 960px) {
+            height: 5rem;
+        }
     }
 }
 
@@ -67,7 +83,10 @@
 }
 
 $cardPosition: translateX(-14rem) translateY(0rem) rotate(-10deg);
-$cardInterimPosition:  translateY(-5rem) ;
+$cardInterimPosition: translateY(-5rem);
+
+$cardPositionMobile: translateX(0rem) translateY(0rem) rotate(0deg);
+$cardInterimPositionMobile: translateY(0rem);
 
 .pickCard {
     animation: pickCardAnimation 2s ease-in-out;
@@ -77,6 +96,11 @@ $cardInterimPosition:  translateY(-5rem) ;
 // SCSS Variable
 .playedCard {
     transform: scale(1.8) $cardPosition;
+}
+
+.pickCardMobile{
+    // animation: pickCardAnimation 2s ease-in-out;
+    transform: scale(1.3) $cardPositionMobile;
 }
 
 @keyframes pickCardAnimation {
@@ -107,6 +131,11 @@ $cardInterimPosition:  translateY(-5rem) ;
     box-shadow: 6px 6px 12px rgba(131, 130, 129, 0.64);
     transition: all 0.3s ease-in-out 0s;
     cursor: pointer;
+
+    @media (max-width: 960px) {
+bottom:1rem;
+right: 1rem;
+    }
 }
 
 .btnAdd::before {

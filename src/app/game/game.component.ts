@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { PleaseAddPlayerDialogComponent } from '../please-add-player-dialog/please-add-player-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +20,7 @@ export class GameComponent implements OnInit {
   // Klassenzuordnung - zu welcher Klasse gehört es
   game: Game;
   gameID: string;
-  
+
   // hitStackAudio = new Audio('src/assets/audio/card.mp3');
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) { }
@@ -48,7 +49,7 @@ export class GameComponent implements OnInit {
           this.game.shuffleX = game.shuffleX;
           this.game.shuffleY = game.shuffleY;
           this.game.shuffleDeg = game.shuffleDeg;
-          
+
 
 
         }); //Änderungen abonnieren
@@ -70,14 +71,13 @@ export class GameComponent implements OnInit {
   //Die Karten werden ins Game Objekt geschoben und anschließend muss man diese wieder raus holen
 
   takeCard(id) {
-    if (!this.game.pickCardAnimation) {
-      // if (!this.game.pickCardAnimation && this.game.amountOfPlayers > 1) {
+    // if (!this.game.pickCardAnimation) {
+    if (!this.game.pickCardAnimation && this.game.players.length > 1) {
       document.getElementById(`${id}`).classList.add('dNone');
       this.game.currentCard = this.game.stack[id];
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-      // this.game.currentPlayer = 0;
       this.safeGame();  //Hier speichern wir unser Spiel, dieser schickt Änderungen in der Subscribe Funktion zurück
 
       setTimeout(() => {
@@ -85,7 +85,6 @@ export class GameComponent implements OnInit {
         this.shuffleX();
         this.game.playedCards.push(this.game.currentCard);
         this.safeGame();
-        // this.hitStackAudio.play();
       }, 2000);
     }
     else {
@@ -93,6 +92,9 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.game.highlightInstruction = false;
       }, 1000);
+
+      this.openPleaseAddDialog();
+
     }
   }
 
@@ -113,6 +115,10 @@ export class GameComponent implements OnInit {
       }
     });
     // this.game.amountOfPlayers++;
+  }
+
+  openPleaseAddDialog() {
+    this.dialog.open(PleaseAddPlayerDialogComponent);
   }
 
   safeGame() {

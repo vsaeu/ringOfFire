@@ -6,6 +6,9 @@ export class Game {
     public shuffleX: number[] = [];
     public shuffleY: number[] = [];
     public shuffleDeg: number[] = [];
+    public shuffleXMobile: number[] = [];
+    public shuffleYMobile: number[] = [];
+    public shuffleDegMobile: number[] = [];
     // public amountOfPlayers: number = 0;
     public highlightInstruction:boolean = false;
     public pickCardAnimation = false;
@@ -25,6 +28,10 @@ export class Game {
             this.shuffleX.push(shuffleXfct())
             this.shuffleY.push(shuffleYfct())
             this.shuffleDeg.push(shuffleDegfct())
+
+            this.shuffleXMobile.push(shuffleXfctMob())
+            this.shuffleYMobile.push(shuffleYfctMob())
+            this.shuffleDegMobile.push(shuffleDegfctMob())
         }
     }
 
@@ -56,6 +63,21 @@ function shuffleYfct() {
 }
 
 function shuffleDegfct() {
+    let rot = (Math.random() * 10 + 10) - 10;
+    return rot;
+}
+
+function shuffleXfctMob() {
+    let x = Math.random() * 1.5 + 4;
+    return x;
+}
+
+function shuffleYfctMob() {
+    let y = Math.random() * 1.5 - 15;
+    return y;
+}
+
+function shuffleDegfctMob() {
     let rot = (Math.random() * 10 + 10) - 10;
     return rot;
 }
