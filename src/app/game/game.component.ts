@@ -87,12 +87,7 @@ export class GameComponent implements OnInit {
         this.safeGame();
       }, 2000);
     }
-    else {
-      this.game.highlightInstruction = true;
-      setTimeout(() => {
-        this.game.highlightInstruction = false;
-      }, 1000);
-
+    else if (this.game.players.length < 2) {
       this.openPleaseAddDialog();
 
     }

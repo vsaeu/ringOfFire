@@ -46,24 +46,27 @@ export class Game {
             currentCard: this.currentCard,
             shuffleX: this.shuffleX,
             shuffleY: this.shuffleY,
-            shuffleDeg: this.shuffleDeg
+            shuffleDeg: this.shuffleDeg,
+            shuffleXMobile: this.shuffleXMobile,
+            shuffleYMobile: this.shuffleYMobile,
+            shuffleDegMobile: this.shuffleDegMobile
         }
     }
 
 }
 
 function shuffleXfct() {
-    let x = Math.random() * 1.5 + 16;
+    let x = Math.random() * 1.3 + 13;
     return x;
 }
 
 function shuffleYfct() {
-    let y = Math.random() * 1.5 + -5;
+    let y = Math.random() * 1.3 + -5;
     return y;
 }
 
 function shuffleDegfct() {
-    let rot = (Math.random() * 10 + 10) - 10;
+    let rot = (Math.random() * 7 + 10) - 10;
     return rot;
 }
 
