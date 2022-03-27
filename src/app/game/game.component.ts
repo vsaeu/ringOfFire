@@ -39,7 +39,7 @@ export class GameComponent implements OnInit {
         .doc(this.gameID) // hier ziehen wir die ID aus der Samlung, 
         .valueChanges()
         .subscribe((game: any) => { //Hier wird alles Upgedated sobald es auf dem Server eine Änderung gibt
-          console.log('Game update', game);
+          // console.log('Game update', game);
           this.game.currentPlayer = game.currentPlayer;
           this.game.playedCards = game.playedCards;
           this.game.players = game.players;
@@ -76,6 +76,8 @@ export class GameComponent implements OnInit {
     if (!this.game.pickCardAnimation && this.game.players.length > 1) {
       document.getElementById(`${i}`).classList.add('dNone');
       this.game.currentCard = this.game.exStack[`${i}`]['id'];
+      // console.log(this.game.exStack[`${i}`]['dNone']);
+      this.game.exStack[`${i}`]['dNone']=true;
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
@@ -97,7 +99,6 @@ export class GameComponent implements OnInit {
   shuffleX() {
     let x = 0;
     x = Math.random() * 20 + 140;
-    console.log('shuffleX conducted: ', x)
     return x;
   }
 

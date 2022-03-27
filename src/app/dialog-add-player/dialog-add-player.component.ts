@@ -26,11 +26,11 @@ export class DialogAddPlayerComponent implements OnInit {
 
 
   playerCounter() {
-    console.log('triggered');
+    // console.log('triggered');
     
-    console.log('Player Added: ', this.amountOfPlayers );
-    this.amountOfPlayers++;
-    console.log('Player Added: ', this.amountOfPlayers );
+    // console.log('Player Added: ', this.amountOfPlayers );
+    // this.amountOfPlayers++;
+    // console.log('Player Added: ', this.amountOfPlayers );
     
   }
 

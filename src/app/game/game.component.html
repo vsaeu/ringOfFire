@@ -5,9 +5,26 @@
         <div class="cardStack">
 
             <!-- Coverd Card Stack -->
-            <img [ngStyle]="{'transform': 'rotate(' + i* 6.923077 +'deg)' }"
+
+            <!-- <img [ngStyle]="{'transform': 'rotate(' + i* 6.923077 +'deg)' }"
                 *ngFor="let c of game.stack; let i = index;" src="/assets/img/cards/card_cover.png" id="{{i}}"
-                (click)="takeCard(i)">
+             (click)="takeCard(i)"> -->
+
+             <!--                  game.exStack[i]['dNone'] ? -->
+
+             <img [ngStyle]="{
+                 'transform': 'rotate(' + i* 6.923077 +'deg)',
+                
+                 'display' : game.exStack[i]['dNone'] ? 'none' : '' 
+                 
+            
+            }"
+            
+
+
+             *ngFor="let c of game.stack; let i = index;" src="/assets/img/cards/card_cover.png" id="{{i}}"
+          (click)="takeCard(i)">
+
 
                 <!------------DESKTOP-----------                     -->
             <!-- Stack for played Card -->

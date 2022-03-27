@@ -26,13 +26,9 @@ export class Game {
         shuffle(this.stack);
 
 
-        console.log(this.stack);
         
         // StepDnone One
         this.extendStackByDisplay();
-        console.log(this.exStack);
-        console.log(this.exStack[0]);
-        console.log(this.exStack[0]['id']);
 
 
 
@@ -71,7 +67,7 @@ export class Game {
         for (var i = 0; i < 52; i++) {
             this.exStack.push({
                 id: this.stack[i],
-                optionValue: false
+                dNone: false
             });
         }
     }
