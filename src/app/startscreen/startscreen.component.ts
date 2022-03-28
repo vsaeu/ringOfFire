@@ -11,20 +11,22 @@ import { Game } from 'src/models/game';
 export class StartscreenComponent implements OnInit {
 
   // Wir wollen unsere Seite weiter leiten
-  constructor( private firestore: AngularFirestore, private router: Router) { }
+  constructor(private firestore: AngularFirestore, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  newGame(){
+  newGame() {
     let game = new Game;
-// wir erstellen uns ein neues Spiel und navigieren uns anschließend da hin
-      this.firestore.collection('games').add(game.toJson())
-      .then ( (gameInfo: any) => {
-        this.router.navigateByUrl('/game/'+gameInfo.id);
-              });
+    // wir erstellen uns ein neues Spiel und navigieren uns anschließend da hin
+    this.firestore
+    .collection('games')
+    .add(game.toJson())
+      .then((gameInfo: any) => {
+        this.router.navigateByUrl('/game/' + gameInfo.id);
+      });
 
-    this.router.navigateByUrl('/game');
+    // this.router.navigateByUrl('/game');
   }
 
 }

@@ -22,26 +22,26 @@
             
 
 
-             *ngFor="let c of game.stack; let i = index;" src="/assets/img/cards/card_cover.png" id="{{i}}"
+             *ngFor="let c of game.stack; let i = index;" src="assets/img/cards/card_cover.png" id="{{i}}"
           (click)="takeCard(i)">
 
 
                 <!------------DESKTOP-----------                     -->
             <!-- Stack for played Card -->
-            <img class="hide-mobile" *ngFor="let card of game.playedCards; let i = index;" src="/assets/img/cards/{{ card }}.png"
+            <img class="hide-mobile" *ngFor="let card of game.playedCards; let i = index;" src="assets/img/cards/{{ card }}.png"
                 [ngStyle]="{'transform': 'scale(1.5) translateX(-' + game.shuffleX[i] + 'rem) translateY(' + game.shuffleY[i] + 'rem) rotate(-' + game.shuffleDeg[i] + 'deg)'}">
 
             <!-- Current Card Animation -->
-            <img *ngIf="game.pickCardAnimation" class="pickCard hide-mobile" src="/assets/img/cards/{{ game.currentCard }}.png">
+            <img *ngIf="game.pickCardAnimation" class="pickCard hide-mobile" src="assets/img/cards/{{ game.currentCard }}.png">
 
 
                             <!------------MOBILE-----------                     -->
             <!-- Stack for played Card -->
-            <img class="hide-desktop" *ngFor="let card of game.playedCards; let i = index;" src="/assets/img/cards/{{ card }}.png"
+            <img class="hide-desktop" *ngFor="let card of game.playedCards; let i = index;" src="assets/img/cards/{{ card }}.png"
                 [ngStyle]="{'transform': 'scale(1.5) translateX(-' + game.shuffleXMobile[i] + 'rem) translateY(' + game.shuffleYMobile[i] + 'rem) rotate(-' + game.shuffleDegMobile[i] + 'deg)'}">
 
             <!-- Current Card Animation -->
-            <img *ngIf="game.pickCardAnimation" class="pickCardMobile hide-desktop" src="/assets/img/cards/{{ game.currentCard }}.png">
+            <img *ngIf="game.pickCardAnimation" class="pickCardMobile hide-desktop" src="assets/img/cards/{{ game.currentCard }}.png">
 
 
 

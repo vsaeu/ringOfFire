@@ -45,7 +45,8 @@ import { PleaseAddPlayerDialogComponent } from './please-add-player-dialog/pleas
     MatFormFieldModule,
     MatCardModule,
     MatDialogModule,
-    MatInputModule 
+    MatInputModule,
+ 
 
   ],
   providers: [],

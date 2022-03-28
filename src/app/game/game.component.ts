@@ -60,13 +60,15 @@ export class GameComponent implements OnInit {
       .collection('games') //zugriff auf Database Sammlung
       .valueChanges() // Sobald es eine Änderung gibt
       .subscribe((game) => {  //subscribe wird mehrmals ausgeführt
-        // console.log('Game update', game);
+        console.log('Game update', game);
       }); //Änderungen abonnieren
+      // this.safeGame();
   }
 
   newGame() {
     this.game = new Game();
-    // this.firestore.collection('games').add(this.game.toJson());
+    this.firestore.collection('games').add(this.game.toJson());
+
   }
 
   //Die Karten werden ins Game Objekt geschoben und anschließend muss man diese wieder raus holen
