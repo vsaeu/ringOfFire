@@ -8,6 +8,17 @@
   </mat-form-field>
   
 </div>
+
+
+<button mat-icon-button [mat-menu-trigger-for]="addressMenu" >
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #addressMenu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Don't drink</button>
   <button mat-button (click)="playerCounter()" [disabled]="name.length == 0" [mat-dialog-close]="name" >Ok</button>

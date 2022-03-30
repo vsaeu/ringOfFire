@@ -20,6 +20,7 @@ import { MatInputModule  } from '@angular/material/input';
 import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
 import { PleaseAddPlayerDialogComponent } from './please-add-player-dialog/please-add-player-dialog.component';
 import { EditPlayerComponent } from './edit-player/edit-player.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -48,6 +49,7 @@ import { EditPlayerComponent } from './edit-player/edit-player.component';
     MatCardModule,
     MatDialogModule,
     MatInputModule,
+    MatMenuModule,
  
 
   ],
