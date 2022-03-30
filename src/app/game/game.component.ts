@@ -5,6 +5,7 @@ import { PleaseAddPlayerDialogComponent } from '../please-add-player-dialog/plea
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 
@@ -17,6 +18,7 @@ export class GameComponent implements OnInit {
   needAddPlayer = true;
   pickCardAnimation = false;
   currentCard: string = '';
+  gameOver = false;
   // Klassenzuordnung - zu welcher Klasse gehört es
   game: Game;
   gameID: string;
@@ -43,6 +45,7 @@ export class GameComponent implements OnInit {
           this.game.currentPlayer = game.currentPlayer;
           this.game.playedCards = game.playedCards;
           this.game.players = game.players;
+          this.game.player_images = game.player_images;
           this.game.stack = game.stack;
           this.game.pickCardAnimation = game.pickCardAnimation;
           this.game.currentCard = game.currentCard;
@@ -53,6 +56,8 @@ export class GameComponent implements OnInit {
           this.game.shuffleYMobile = game.shuffleYMobile;
           this.game.shuffleDegMobile = game.shuffleDegMobile;
           this.game.exStack = game.exStack;
+          this.game.maxCards = game.maxCards;
+
         }); //Änderungen abonnieren
     });
     this
@@ -62,7 +67,7 @@ export class GameComponent implements OnInit {
       .subscribe((game) => {  //subscribe wird mehrmals ausgeführt
         console.log('Game update', game);
       }); //Änderungen abonnieren
-      // this.safeGame();
+    // this.safeGame();
   }
 
   newGame() {
@@ -74,12 +79,12 @@ export class GameComponent implements OnInit {
   //Die Karten werden ins Game Objekt geschoben und anschließend muss man diese wieder raus holen
 
   takeCard(i) {
-    // if (!this.game.pickCardAnimation) {
-    if (!this.game.pickCardAnimation && this.game.players.length > 1) {
+
+     if (!this.game.pickCardAnimation && this.game.players.length > 1) {
       document.getElementById(`${i}`).classList.add('dNone');
       this.game.currentCard = this.game.exStack[`${i}`]['id'];
       // console.log(this.game.exStack[`${i}`]['dNone']);
-      this.game.exStack[`${i}`]['dNone']=true;
+      this.game.exStack[`${i}`]['dNone'] = true;
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
@@ -96,6 +101,36 @@ export class GameComponent implements OnInit {
       this.openPleaseAddDialog();
 
     }
+    if (this.game.playedCards.length == this.game.maxCards -1) {
+      setTimeout(() => {
+        this.gameOver = true;
+        console.log(this.gameOver); 
+      }, 3500);
+
+    }
+  }
+
+  editPlayer(playerID: number) {
+    console.log('Edit player', playerID);
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+    dialogRef.afterClosed().subscribe((change: string) => {
+      console.log(change);
+
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.player_images.splice(playerID, 1);
+          this.game.players.splice(playerID, 1);
+        }
+        else {
+          this.game.player_images[playerID] = change;
+        }
+        console.log('this.editPlayer change :', change);
+
+        this.safeGame();
+      }
+    });
+
+
   }
 
   shuffleX() {
@@ -110,6 +145,10 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.game.player_images.push('1.png');
+        console.log('open Dialog after close', this.game.player_images);
+
+
         this.safeGame();
       }
     });

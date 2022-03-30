@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { MatInputModule  } from '@angular/material/input';
 import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
 import { PleaseAddPlayerDialogComponent } from './please-add-player-dialog/please-add-player-dialog.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 
 
@@ -32,6 +33,7 @@ import { PleaseAddPlayerDialogComponent } from './please-add-player-dialog/pleas
     GameInfoComponent,
     PlayerMobileComponent,
     PleaseAddPlayerDialogComponent,
+    EditPlayerComponent,
 
   ],
   imports: [

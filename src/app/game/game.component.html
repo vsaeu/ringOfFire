@@ -1,4 +1,7 @@
-<div class="field">
+<div *ngIf="gameOver " class="gameOver">
+    <img   src="./assets/img/GameOverEdited.png" alt="" srcset="">
+</div>
+<div class="field" *ngIf="!gameOver ">
 
     <div class="onTable">
         <img src="/assets/img/table.svg" class="table">
@@ -51,23 +54,29 @@
 </div>
 
 <!--  ------------  Spielanweisungen------------ -->
-<app-game-info [card]="game.currentCard"></app-game-info>
+<app-game-info [card]="game.currentCard" *ngIf="!gameOver"></app-game-info>
 
 
 <!-- ---------Button ----------------- -->
-<button mat-fab color="primary" class="btnAdd" [class.btnBeginning]="" (click)="openDialog()">
+<button mat-fab color="primary" *ngIf="!gameOver" class="btnAdd" [class.btnBeginning]="" (click)="openDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
 <!-- this.game.amountOfPlayers < 2      Classen Bedingung -->
 
 <!-- ---------Players ----------------- -->
-<app-player *ngFor="let player of game.players, 
-let i = index;" class="playerPosition hide-mobile" [ngStyle]="{'top.rem': 3 + (i * 3.5)}" [name]='player'
-    [playerActive]="i == game.currentPlayer">
+<div *ngIf="!gameOver"> 
+<app-player  (click)="editPlayer(i)" *ngFor="let player of game.players, 
+let i = index;" class="playerPosition hide-mobile" [ngStyle]="{'top.rem': 3 + (i * 3.5)}" [image]="game.player_images[i]" [name]='player'
+    [playerActive]="i == game.currentPlayer"
+    
+    >
+    
 </app-player>
 
-<app-player-mobile *ngFor="let player of game.players, 
-let i = index;" class="playerPosition hide-desktop" [ngStyle]="{'top.rem': 9 + (i * 3.5)}" [name]='player'
-    [playerActive]="i == game.currentPlayer">
+<app-player-mobile (click)="editPlayer(i)" *ngFor="let player of game.players, 
+let i = index;" class="playerPosition hide-desktop" [ngStyle]="{'top.rem': 9 + (i * 3.5)}" [name]='player' [image]="game.player_images[i]"
+    [playerActive]="i == game.currentPlayer"
+    >
 </app-player-mobile>
+</div>

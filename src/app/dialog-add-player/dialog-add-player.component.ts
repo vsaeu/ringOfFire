@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  MatDialogRef } from '@angular/material/dialog';
 import { Game } from 'src/models/game';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-dialog-add-player',

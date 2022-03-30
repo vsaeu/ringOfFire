@@ -1,5 +1,6 @@
 export class Game {
     public players: string[] = [];
+    public player_images: string [] = [];
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
@@ -15,6 +16,7 @@ export class Game {
     public currentCard: string = '';
     public amountOfPlayers: number = 0;
     public exStack = [];
+    public maxCards: number; 
 
     constructor() {
         for (let i = 1; i < 14; i++) {
@@ -24,6 +26,7 @@ export class Game {
             this.stack.push('clubs_' + i)
         }
         shuffle(this.stack);
+        this.maxCards = this.stack.length;
 
 
         
@@ -32,7 +35,7 @@ export class Game {
 
 
 
-        for (let i = 0; i < 52; i++) {
+        for (let i = 0; i < this.stack.length; i++) {
             this.shuffleX.push(shuffleXfct())
             this.shuffleY.push(shuffleYfct())
             this.shuffleDeg.push(shuffleDegfct())
@@ -48,6 +51,7 @@ export class Game {
     public toJson() {
         return {
             players: this.players,
+            player_images: this.player_images,
             stack: this.stack,
             playedCards: this.playedCards,
             currentPlayer: this.currentPlayer,
@@ -59,12 +63,14 @@ export class Game {
             shuffleXMobile: this.shuffleXMobile,
             shuffleYMobile: this.shuffleYMobile,
             shuffleDegMobile: this.shuffleDegMobile,
-            exStack: this.exStack
+            exStack: this.exStack,
+            maxCards: this.maxCards,
+
         }
     }
 
     public extendStackByDisplay() {
-        for (var i = 0; i < 52; i++) {
+        for (var i = 0; i < this.stack.length; i++) {
             this.exStack.push({
                 id: this.stack[i],
                 dNone: false

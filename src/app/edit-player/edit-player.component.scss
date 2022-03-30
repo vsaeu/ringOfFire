@@ -1,0 +1,6 @@
+.profilePicture {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(1.35);
+    }
+}
